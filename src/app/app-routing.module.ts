@@ -16,6 +16,9 @@ const routes: Routes = [
 {
   path:"",loadChildren:()=>import('./modules/productos/productos.module').then(m=>m.ProductosModule)
 },
+{
+  path:"",loadChildren:()=>import('./modules/autenticacion/autenticacion.module').then(m=>m.AutenticacionModule)
+}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
