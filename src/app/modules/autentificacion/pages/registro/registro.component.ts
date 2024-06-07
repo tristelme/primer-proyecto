@@ -27,20 +27,32 @@ export class RegistroComponent {
   //funcion para el usuario
   registrar() {
     const credenciales = {
-      uid: this.usuarios.uid,
-      nombre: this.usuarios.nombre,
-      apellido: this.usuarios.apellido,
-      email: this.usuarios.email,
-      rol: this.usuarios.rol,
-      password: this.usuarios.password,
+      uid: this.usuarios.uid="",
+      nombre: this.usuarios.nombre="",
+      apellido: this.usuarios.apellido="",
+      email: this.usuarios.email="",
+      rol: this.usuarios.rol="",
+      password: this.usuarios.password=""
     }
 
     //enviamos los nuevos registros por medio del metodo push a la coleccion 
     this.coleccionUsuarios.push(credenciales);
 
+    this.limpiarinputs();
     //por consola
-    console.log(credenciales)
-    console.log(this.coleccionUsuarios)
+    //console.log(credenciales)
+    //console.log(this.coleccionUsuarios)
 
+  }
+
+  limpiarinputs() {
+    const inputs = {
+      uid: this.usuarios.uid,
+      nombre: this.usuarios.nombre,
+      apellido: this.usuarios.apellido,
+      email: this.usuarios.email,
+      rol: this.usuarios.rol,
+      password: this.usuarios.password
+    }
   }
 }
