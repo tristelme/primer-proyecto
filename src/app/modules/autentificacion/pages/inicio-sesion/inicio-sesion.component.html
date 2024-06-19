@@ -7,36 +7,29 @@
         <!--email del usuario-->
         <mat-form-field appearance="fill">
             <mat-label>Correo electronico</mat-label>
-            <input [(ngModel)]="inicio_sesion.email" matInput placeholder="Placeholder" required>
-            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <input [(ngModel)]="inicio_sesion.email" matInput placeholder="Ej: pepitojuarez@gmail.com" required>
         </mat-form-field>
+
+
+
+
+        <!--contraseña de usuario-->
 
         <mat-form-field>
-            <mat-label>seleccione un rol</mat-label>
-            <mat-select [(ngModel)]="inicio_sesion.rol" required="">
-                <mat-option value="admin">administrador</mat-option>
-                <mat-option value="vis">visitante</mat-option>
-            </mat-select>
+            <mat-label>Ingrese su contraseña</mat-label>
+            <input [(ngModel)]="inicio_sesion.password" matInput [type]="hide ? 'password' : 'text'" #input
+                minlength="6" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
+            <mat-hint align="start">minimo:6/{{input.value.length}}</mat-hint>
+
         </mat-form-field>
 
-        <div>
+        <button class="boton" mat-raised-button color="primary" (click)="IniciarSesion()">enviar </button>
 
-            <!--contraseña de usuario-->
 
-            <mat-form-field>
-                <mat-label>Enter your password</mat-label>
-                <input [(ngModel)]="inicio_sesion.password" matInput [type]="hide ? 'password' : 'text'" #input minlength="6"
-                    required>
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                    [attr.aria-pressed]="hide">
-                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-
-                <mat-hint align="start">minimo:6/{{input.value.length}}</mat-hint>
-
-            </mat-form-field>
-
-            <button class="boton"  (click)="enviar()">enviar </button  >
-
-        </div>
     </div>
+</div>
