@@ -21,7 +21,7 @@ export class FirestoreService {
   agregarUsuario(usuario: Usuario, id: string){
     /* Generamos nueva PROMESA y utiliza los métodos:
       RESOLVE: promesa resuelta -> funciona correctamente
-      REJECT: promesa rechaza -> ocurrió una falla.
+      REJECT: promesa rechaza -> ocurrió una falla
     */
     return new Promise(async (resolve, reject) => {
       // Bloque TRY encapsula la lógica resuelta
@@ -29,7 +29,7 @@ export class FirestoreService {
         usuario.uid = id;
 
         /**
-         * const resultado = colección de usuarios, envía como documento el UID.
+         * const resultado = colección de usuarios, envía como documento el UID..
          * y setea la información que ingresemos en el REGISTRO
          */
         const resultado = await this.usuariosCollection.doc(id).set(usuario);
