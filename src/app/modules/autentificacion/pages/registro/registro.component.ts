@@ -6,6 +6,10 @@ import { AuthService } from '../../services/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 // Servicio de rutas que otorga Angular
 import { Router } from '@angular/router';
+//Importamos paqueteria de encriptacion
+import * as CryptoJS from 'crypto-js';
+//Importamos paqueteria de SweetAlert para alertas personalizadas
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -47,7 +51,11 @@ export class RegistroComponent {
     const res = await this.servicioAuth.registrar(credenciales.email, credenciales.password)
     // El método THEN nos devuelve la respuesta esperada por la promesa
     .then(res => {
-      alert('Ha agregado un usuario con éxito :)');
+      Swal.fire({
+        title: "Buen Trabajo!",
+        text: "Ha agregado un usuario con éxito",
+        icon: "success"
+      });
 
       // Accedemos al servicio de rutas -> método navigate
       // método NAVIGATE = permite dirigirnos a diferentes vistas
@@ -55,13 +63,26 @@ export class RegistroComponent {
     })
     // El método CATCH toma una falla y la vuelve un ERROR
     .catch(error => {
-      alert('Hubo un problema al registrar un nuevo usuario :(');
+      Swal.fire({
+        title: "ERROR",
+        text: "Hubo un problema al registrar un nuevo usuario",
+        icon: "error"
+      });
     })
 
     const uid = await this.servicioAuth.obtenerUid();
 
     this.usuarios.uid = uid;
+    // ENCRIPTACIÓN DE LA CONTRASEÑA DE USUARIO
+    /**
+     * SHA-256: Es un algoritmo de hashing seguro que toma una entrada (en este caso la
+     * contraseña) y produce una cadena de caracteres HEXADECIMAL que representa su HASH
+     * 
+     * toString(): Convierte el resultado del hash en una cadena de caracteres legible
+     */
+    this.usuarios.password = CryptoJS.SHA256(this.usuarios.password).toString();
 
+    // this.guardarUsuario() guardaba la información del usuario en la colección
     this.guardarUsuario();
 
     // Llamamos a la función limpiarInputs() para que se ejecute

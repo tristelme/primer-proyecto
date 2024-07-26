@@ -3,6 +3,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { AuthService } from '../../services/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore.service';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-inicio-sesion',
